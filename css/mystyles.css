@@ -1,0 +1,203 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway|Lato|Montserrat);
+
+/*Main Styles*/
+
+body {
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/background.jpg');
+    background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/background.jpg');
+    background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/background.jpg');
+    background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0)), url('../img/background.jpg');
+	
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron {
+	background-color: #FFFFFF;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    margin-bottom: 0em;
+	margin: 0em;
+	width: 100%;
+	padding: 2em;
+	padding-left: 3em;
+	padding-right: 3em;
+}
+
+h1 {
+	font-family: 'Raleway', sans-serif;
+	margin-bottom: .5em;
+}
+
+h2 {
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom: 1em;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-family: 'Raleway', sans-serif;
+}
+
+/*Navbar Styles*/
+.navbar {
+	-o-border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    font-family: sans-serif;
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-bottom: 0em;
+	background-color: rgba(0,0,0,.4);
+    border: none;
+}
+
+.navbar_component > a{
+	color: #808080 !important;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.navbar_component > a:hover {
+	color: #FFFFFF !important;
+}
+
+.navbar-brand {
+	font-family: 'Montserrat', sans-serif;
+	color: #FFFFFF !important;
+}
+
+.navbar-brand:hover {
+	border-color: #15FF8B;
+	color: #15FF8B !important;
+}
+
+#navbarButtonGroup {
+	margin: 0em;
+	margin-top: .55em;
+}
+
+#navbarButtonGroup > button {
+	background-color: transparent;
+	color: #FFFFFF !important;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-width: .1em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+#navbarButtonGroup > button:hover {
+	border-color: #15FF8B;
+	color: #15FF8B !important;
+}
+
+/*Section Styles*/
+
+#welcomeSection {
+	background-color: rgba(0,0,0,.4);
+	color: white;
+	padding-top: 15%;
+	padding-bottom: 20%;
+}
+
+#welcomeTitle {
+	font-family: 'Montserrat', sans-serif;
+	text-transform: lowercase;
+	margin-bottom: 1em;
+}
+
+#welcomeSubtitle {
+	text-transform: lowercase;
+}
+
+#welcomeActionTitle {
+	margin-top: 6em;
+	text-transform: uppercase;
+}
+
+#queryTrackSection {
+	background-color: rgba(0, 214, 108, 1);
+	color: #FFFAFA;
+}
+
+#queryResultsSection {
+	background-color: #FFFAFA;
+	color: rgb(0, 214, 108);
+	
+	text-align: left;
+}
+
+#trackPlayerSection {
+	background-color: rgba(0,0,0,.7);
+	color: white;
+}
+
+#trackListSection {
+	
+}
+
+#mainFooter {
+	background-color: rgba(0,0,0,.7);
+	color: white;
+	font-family: 'Raleway', sans-serif;
+	text-transform: lowercase;
+	padding-bottom: 3em;
+	padding-top: 3em;
+}
+
+#footer-title {
+	margin-bottom: 1em;
+	margin-top: 0em;
+}
+
+#footer-title-secondary {
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+/*Component Styles*/
+#logoutButton {
+	display: none;
+}
+
+.modal {
+	text-align: left;
+}
+
+.modal-content {
+	-o-border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+	
+	background-color: rgba(255, 255, 255, 1);
+	color: rgb(0, 214, 108);
+	border: none;
+	box-shadow: 0 0 1em #15FF8B;
+}
+
+#signupSubmitButton {
+	background-color: transparent;
+	color: rgb(0, 214, 108) !important;
+	border-style: solid;
+	border-color: rgb(0, 214, 108);
+	border-width: .1em;
+}
+
+#loginSubmitButton {
+	background-color: transparent;
+	color: rgb(0, 214, 108) !important;
+	border-style: solid;
+	border-color: rgb(0, 214, 108);
+	border-width: .1em;
+}

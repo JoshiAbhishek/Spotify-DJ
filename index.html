@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Spotify DJ</title>
+
+	<!-- jQuery, Bootstrap, Font Awesome -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<!-- Parse -->
+	<script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
+
+	<!-- Custom files -->
+	<link rel="stylesheet" href="css/mystyles.css" />
+</head>
+
+<body>
+
+	<!--Sign up modal for new users-->
+
+	<div class="modal fade" id="signupModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="signupModalTitle">Sign Up</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="signupName">User Name</label>
+							<input class="form-control" id="signupName" placeholder="Give a user name">
+						</div>
+						<div class="form-group">
+							<label for="signupPassword">Password</label>
+							<input class="form-control" id="signupPassword" type="password" placeholder="Give a password">
+						</div>
+						<button id="signupSubmitButton" type="submit" class="btn btn-primary">Sign Up</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Log in modal for existing users-->
+
+	<div class="modal fade" id="loginModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="loginModalTitle">Log In</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="loginName">User Name</label>
+							<input class="form-control" id="loginName" placeholder="Give your user name">
+						</div>
+						<div class="form-group">
+							<label for="loginPasword">Password</label>
+							<input class="form-control" id="loginPasword" type="password" placeholder="Give your password">
+						</div>
+						<button id="loginSubmitButton" type="submit" class="btn btn-primary">Log In</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Navbar for the page-->
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">spotify dj</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="main-navbar">
+				<ul class="nav navbar-nav">
+					<li class="navbar_component"><a href="#queryTrackSection">Find a track</a></li>
+					<li class="navbar_component"><a href="#trackPlayerSection">Play a track</a></li>
+					<li class="navbar_component"><a href="#trackListSection">Playlist</a></li>
+				</ul>
+				<div id="navbarButtonGroup" class="pull-right">
+					<!--Button to sign up a new user-->
+					<button id="signupButton" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+					<!--Button for existing users to log in-->
+					<button id="loginButton" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
+					<!--Button for current users to log out-->
+					<button id="logoutButton" class="btn btn-primary">Log Out</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!--Welcome-->
+	<section id="welcomeSection" class="jumbotron container">
+		<h1 id="welcomeTitle">spotify dj</h1>
+		<h3 id="welcomeSubtitle">collaborative playlists</h3>
+		<!--
+		<h2 id="welcomeActionTitle">get started</h2>
+		-->
+	</section>
+
+	<!--Query Tracks-->
+	<section id="queryTrackSection" class="jumbotron container">
+		<h2>Find a track</h2>
+	</section>
+
+	<!--Track Query Results-->
+	<section id="queryResultsSection" class="jumbotron container">
+		<h3>Results:</h3>
+	</section>
+
+	<!--Track Player-->
+	<section id="trackPlayerSection" class="jumbotron container">
+		<h2>Play a track</h2>
+	</section>
+
+	<!--Track List-->
+	<section id="trackListSection" class="jumbotron container">
+		<h2>Playlist</h2>
+	</section>
+
+	<!--Footer-->
+	<footer id="mainFooter" class="jumbotron container">
+		<p id="footer-title">Site Made With
+			<span class="glyphicon glyphicon-heart-empty"></span> In Seattle, WA</p>
+		<p id="footer-title-secondary">By Abhishek Joshi</p>
+	</footer>
+
+</body>
+
+</html>
