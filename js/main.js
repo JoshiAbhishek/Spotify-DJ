@@ -18,11 +18,23 @@ var mainCtrl = myApp.controller('mainCtrl', function ($scope, $http) {
 	$scope.play = function (song, id) {
 		if ($scope.currentSong == song) {
 			$scope.audioObject.pause()
+			
+			$("#" + id).html('<i class="fa fa-play-circle"></i>')
+			
 			$scope.currentSong = false
 			return
 		}
 		else {
-			if ($scope.audioObject.pause != undefined) $scope.audioObject.pause()
+			if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
+
+			if(currentPreview != id) {
+				$("#" + currentPreview).html('<i class="fa fa-play-circle"></i>')
+			}
+
+			$("#" + id).html('<i class="fa fa-stop"></i>')
+			
+			currentPreview = id
+			
 			$scope.audioObject = new Audio(song);
 			$scope.audioObject.play()
 			$scope.currentSong = song

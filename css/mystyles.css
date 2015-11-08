@@ -205,8 +205,8 @@ h3 {
 	border-width: .1em;
 }
 
-.fa-play-circle {
-	height: 1em;
+.fa-play-circle, .fa-pause, .fa-stop {
+	font-size: 1.5em;
 }
 
 .addButton {
@@ -230,4 +230,20 @@ h3 {
 	padding: .5em;
 	padding-top: .25em;
 	padding-bottom: .25em;
+}
+
+#queryButton {
+	background-color: transparent;
+	color: #FFFFFF !important;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-width: .1em;
+}
+
+#queryButton:hover {
+	background-color: #FFFFFF;
+	color: rgb(0, 214, 108) !important;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-width: .1em;
 }

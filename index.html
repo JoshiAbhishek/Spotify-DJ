@@ -128,7 +128,7 @@
 						<label for="queryInput">Search for a track:</label>
 						<input id="queryInput" name="trackSearch" ng-model="track" class="form-control" placeholder="Search for a track">
 					</div>
-					<button id="queryButton" ng-disabled="queryForm.trackSearch.$invalid" ng-click="searchTracks()" type="submit" class="btn btn-default pull-right">Submit</button>
+					<button id="queryButton" ng-disabled="queryForm.trackSearch.$invalid" ng-click="searchTracks()" type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -154,7 +154,7 @@
 				</thead>
 				<tbody ng-repeat="track in queryTracks">
 					<tr>
-						<td id="{{track.id + track.artist}}" title="{{track.name}}"><span ng-click="play(track.preview_url, this.id)"><i class="fa fa-play-circle"></i></span></td>
+						<td title="{{track.name}}"><span id="{{track.id}}" ng-click="play(track.preview_url, track.id)"><i class="fa fa-play-circle"></i></span></td>
 						<td>{{track.name}}</td>
 						<td>{{track.artists[0].name}}</td>
 						<td>{{track.duration_ms}}</td>
