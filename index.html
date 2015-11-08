@@ -7,17 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Spotify DJ</title>
 
-	<!-- jQuery, Bootstrap, Font Awesome -->
+	<!-- jQuery, Bootstrap, Font Awesome, AngularJS -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
 
 	<!-- Parse -->
 	<script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
 	<!-- Custom files -->
 	<link rel="stylesheet" href="css/mystyles.css" />
+	
+	<!--Custom JavaScript-->
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body>
@@ -112,20 +116,67 @@
 		<h2 id="welcomeActionTitle">get started</h2>
 		-->
 	</section>
-
+<div ng-app="myApp" ng-controller="mainCtrl" >
 	<!--Query Tracks-->
 	<section id="queryTrackSection" class="jumbotron container">
 		<h2>Find a track</h2>
+
+		<div class="row">
+			<div class="col-xs-12 col-md-6 col-md-offset-3">
+				<form id="trackQueryForm" name="queryForm">
+					<div class="form-group">
+						<label for="queryInput">Search for a track:</label>
+						<input id="queryInput" name="trackSearch" ng-model="track" class="form-control" placeholder="Search for a track">
+					</div>
+					<button id="queryButton" ng-disabled="queryForm.trackSearch.$invalid" ng-click="searchTracks()" type="submit" class="btn btn-default pull-right">Submit</button>
+				</form>
+			</div>
+		</div>
+
+
+
 	</section>
 
 	<!--Track Query Results-->
-	<section id="queryResultsSection" class="jumbotron container">
+	<section ng-show="queryTracks.length>0" id="queryResultsSection" class="jumbotron container">
 		<h3>Results:</h3>
+
+		<div id="queryResultsList">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Preview</th>
+						<th>Title</th>
+						<th>Artist</th>
+						<th>Duration</th>
+						<th>Add To Playlist</th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="track in queryTracks">
+					<tr>
+						<td id="{{track.id + track.artist}}" title="{{track.name}}"><span ng-click="play(track.preview_url, this.id)"><i class="fa fa-play-circle"></i></span></td>
+						<td>{{track.name}}</td>
+						<td>{{track.artists[0].name}}</td>
+						<td>{{track.duration_ms}}</td>
+						<td><button class="addButton btn btn-success">Add</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
 
+
+</div>
 	<!--Track Player-->
 	<section id="trackPlayerSection" class="jumbotron container">
 		<h2>Play a track</h2>
+
+		<!--
+
+		<iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="380" frameborder="0"
+		allowtransparency="true"></iframe>
+
+		-->
 	</section>
 
 	<!--Track List-->
@@ -139,6 +190,8 @@
 			<span class="glyphicon glyphicon-heart-empty"></span> In Seattle, WA</p>
 		<p id="footer-title-secondary">By Abhishek Joshi</p>
 	</footer>
+
+	
 
 </body>
 

@@ -130,10 +130,13 @@ h3 {
 	color: #FFFAFA;
 }
 
+#trackQueryForm {
+	text-align: left;
+}
+
 #queryResultsSection {
 	background-color: #FFFAFA;
 	color: rgb(0, 214, 108);
-	
 	text-align: left;
 }
 
@@ -183,7 +186,7 @@ h3 {
 	background-color: rgba(255, 255, 255, 1);
 	color: rgb(0, 214, 108);
 	border: none;
-	box-shadow: 0 0 1em #15FF8B;
+	/*box-shadow: 0 0 1em #15FF8B;*/
 }
 
 #signupSubmitButton {
@@ -200,4 +203,31 @@ h3 {
 	border-style: solid;
 	border-color: rgb(0, 214, 108);
 	border-width: .1em;
+}
+
+.fa-play-circle {
+	height: 1em;
+}
+
+.addButton {
+	background-color: transparent;
+	color: rgb(0, 214, 108) !important;
+	border-style: solid;
+	border-color: rgb(0, 214, 108);
+	border-width: .1em;
+	padding: .5em;
+	padding-top: .25em;
+	padding-bottom: .25em;
+}
+
+.addButton:hover {
+	background-color: rgb(0, 214, 108) !important;
+	color: #FFFFFF !important;
+	border: none;
+	border-style: solid;
+	border-color: rgb(0, 214, 108);
+	border-width: .1em;
+	padding: .5em;
+	padding-top: .25em;
+	padding-bottom: .25em;
 }
