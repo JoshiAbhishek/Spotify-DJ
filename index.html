@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,191 +7,223 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Spotify DJ</title>
 
-	<!-- jQuery, Bootstrap, Font Awesome, AngularJS -->
+	<!-- jQuery, Bootstrap, Font Awesome, AngularJS, Firebase, AngularFire -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
 
 	<!-- Parse -->
 	<script src="//www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
 	<!-- Custom files -->
 	<link rel="stylesheet" href="css/mystyles.css" />
-	
+
 	<!--Custom JavaScript-->
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body>
 
-	<!--Sign up modal for new users-->
+	<div ng-app="myApp" ng-controller="mainCtrl">
 
-	<div class="modal fade" id="signupModal" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="signupModalTitle">Sign Up</h4>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="signupName">User Name</label>
-							<input class="form-control" id="signupName" placeholder="Give a user name">
-						</div>
-						<div class="form-group">
-							<label for="signupPassword">Password</label>
-							<input class="form-control" id="signupPassword" type="password" placeholder="Give a password">
-						</div>
-						<button id="signupSubmitButton" type="submit" class="btn btn-primary">Sign Up</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+		<!--Sign up modal for new users-->
 
-	<!--Log in modal for existing users-->
-
-	<div class="modal fade" id="loginModal" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="loginModalTitle">Log In</h4>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="loginName">User Name</label>
-							<input class="form-control" id="loginName" placeholder="Give your user name">
-						</div>
-						<div class="form-group">
-							<label for="loginPasword">Password</label>
-							<input class="form-control" id="loginPasword" type="password" placeholder="Give your password">
-						</div>
-						<button id="loginSubmitButton" type="submit" class="btn btn-primary">Log In</button>
-					</form>
+		<div class="modal fade" id="signupModal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="signupModalTitle">Sign Up</h4>
+					</div>
+					<div class="modal-body">
+						<form name="signupForm" ng-show="!userId" novalidate>
+							<div class="form-group">
+								<label for="signupEmail">Email</label>
+								<input class="form-control" id="signupEmail" ng-model="email" name="email" type="email" placeholder="Give an email">
+								<p class="help-block" ng-show="signupForm.email.$error.email">Not an email!</p>
+							</div>
+							<div class="form-group">
+								<label for="signupPassword">Password</label>
+								<input class="form-control" name="password" ng-model="password" id="signupPassword" type="password" placeholder="Give a password">
+							</div>
+							<button id="signupSubmitButton" ng-click="signUp()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-primary">Sign Up</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!--Navbar for the page-->
+		<!--Log in modal for existing users-->
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a href="#" class="navbar-brand">spotify dj</a>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="main-navbar">
-				<ul class="nav navbar-nav">
-					<li class="navbar_component"><a href="#queryTrackSection">Find a track</a></li>
-					<li class="navbar_component"><a href="#trackPlayerSection">Play a track</a></li>
-					<li class="navbar_component"><a href="#trackListSection">Playlist</a></li>
-				</ul>
-				<div id="navbarButtonGroup" class="pull-right">
-					<!--Button to sign up a new user-->
-					<button id="signupButton" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Sign Up</button>
-					<!--Button for existing users to log in-->
-					<button id="loginButton" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
-					<!--Button for current users to log out-->
-					<button id="logoutButton" class="btn btn-primary">Log Out</button>
+		<div class="modal fade" id="loginModal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="loginModalTitle">Log In</h4>
+					</div>
+					<div class="modal-body">
+						<form name="loginForm">
+							<div class="form-group">
+								<label for="loginEmail">Email</label>
+								<input class="form-control" id="loginEmail" ng-model="email" type="email" placeholder="Give your email">
+								<p class="help-block" ng-show="loginForm.email.$error.email">Not an email!</p>
+							</div>
+							<div class="form-group">
+								<label for="loginPasword">Password</label>
+								<input class="form-control" ng-model="password" name="password" id="loginPasword" type="password" placeholder="Give your password">
+							</div>
+							<button id="loginSubmitButton" ng-click="signIn()" ng-disabled="myForm.email.$invalid || myForm.password.$invalid" type="submit"
+							class="btn btn-primary">Log In</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</nav>
 
-	<!--Welcome-->
-	<section id="welcomeSection" class="jumbotron container">
-		<h1 id="welcomeTitle">spotify dj</h1>
-		<h3 id="welcomeSubtitle">collaborative playlists</h3>
-		<!--
+		<!--Navbar for the page-->
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="#" class="navbar-brand">spotify dj</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="main-navbar">
+					<ul class="nav navbar-nav">
+						<li class="navbar_component"><a href="#queryTrackSection">Find a track</a></li>
+						<li class="navbar_component"><a href="#trackPlayerSection">Play a track</a></li>
+						<li class="navbar_component"><a href="#trackListSection">Playlist</a></li>
+					</ul>
+					<div id="navbarButtonGroup" class="pull-right">
+						<!--Button to sign up a new user-->
+						<button id="signupButton" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Sign Up</button>
+						<!--Button for existing users to log in-->
+						<button id="loginButton" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log In</button>
+						<!--Button for current users to log out-->
+						<button id="logoutButton" class="btn btn-primary">Log Out</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<!--Welcome-->
+		<section id="welcomeSection" class="jumbotron container">
+			<h1 id="welcomeTitle">spotify dj</h1>
+			<h3 id="welcomeSubtitle">a global playlist</h3>
+			<!--
 		<h2 id="welcomeActionTitle">get started</h2>
 		-->
-	</section>
-<div ng-app="myApp" ng-controller="mainCtrl" >
-	<!--Query Tracks-->
-	<section id="queryTrackSection" class="jumbotron container">
-		<h2>Find a track</h2>
+		</section>
 
-		<div class="row">
-			<div class="col-xs-12 col-md-6 col-md-offset-3">
-				<form id="trackQueryForm" name="queryForm">
-					<div class="form-group">
-						<label for="queryInput">Search for a track:</label>
-						<input id="queryInput" name="trackSearch" ng-model="track" class="form-control" placeholder="Search for a track">
-					</div>
-					<button id="queryButton" ng-disabled="queryForm.trackSearch.$invalid" ng-click="searchTracks()" type="submit" class="btn btn-default">Submit</button>
-				</form>
+		<!--Query Tracks-->
+		<section id="queryTrackSection" class="jumbotron container">
+			<h2>Find a track</h2>
+
+			<div class="row">
+				<div class="col-xs-12 col-md-6 col-md-offset-3">
+					<form id="trackQueryForm" name="queryForm">
+						<div class="form-group">
+							<label for="queryInput">Search for a track:</label>
+							<input id="queryInput" name="trackSearch" ng-model="track" class="form-control" placeholder="Search for a track">
+						</div>
+						<button id="queryButton" ng-disabled="queryForm.trackSearch.$invalid" ng-click="searchTracks()" type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
 			</div>
-		</div>
+		</section>
 
+		<!--Track Query Results-->
+		<section ng-show="queryTracks.length>0" id="queryResultsSection" class="jumbotron container">
+			<h3>Results:</h3>
 
+			<div id="queryResultsList">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Preview</th>
+							<th>Title</th>
+							<th>Artist</th>
+							<th>Duration</th>
+							<th>Add To Playlist</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="track in queryTracks">
+						<tr>
+							<td title="{{track.name}}">
+								<button class="button-fa" id="{{track.id}}" ng-click="preview(track.preview_url, track.id)"><i class="fa fa-play-circle"></i></button>
+							</td>
+							<td>{{track.name}}</td>
+							<td>{{track.artists[0].name}}</td>
+							<td>{{track.duration_ms}}</td>
+							<td>
+								<button ng-click="addTrack(track.id, track.name, track.artists[0].name, track.duration_ms, track.preview_url)" class="addButton btn btn-success">Add</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
 
-	</section>
+		<!--Track Player-->
+		<section ng-show="playlist.length>0" id="trackPlayerSection" class="jumbotron container">
+			<h2>Preview The Playlist</h2>
 
-	<!--Track Query Results-->
-	<section ng-show="queryTracks.length>0" id="queryResultsSection" class="jumbotron container">
-		<h3>Results:</h3>
+			<div id="previewPlaylistWrapper">
+				<iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="380" frameborder="0"
+				allowtransparency="true"></iframe>
+			</div>
 
-		<div id="queryResultsList">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Preview</th>
-						<th>Title</th>
-						<th>Artist</th>
-						<th>Duration</th>
-						<th>Add To Playlist</th>
-					</tr>
-				</thead>
-				<tbody ng-repeat="track in queryTracks">
-					<tr>
-						<td title="{{track.name}}"><span id="{{track.id}}" ng-click="play(track.preview_url, track.id)"><i class="fa fa-play-circle"></i></span></td>
-						<td>{{track.name}}</td>
-						<td>{{track.artists[0].name}}</td>
-						<td>{{track.duration_ms}}</td>
-						<td><button class="addButton btn btn-success">Add</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</section>
+		</section>
 
+		<!--Track List-->
+		<section ng-show="playlist.length>0" id="trackListSection" class="jumbotron container">
+			<h2>Playlist</h2>
 
-</div>
-	<!--Track Player-->
-	<section id="trackPlayerSection" class="jumbotron container">
-		<h2>Play a track</h2>
-
-		<!--
-
-		<iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="380" frameborder="0"
-		allowtransparency="true"></iframe>
-
-		-->
-	</section>
-
-	<!--Track List-->
-	<section id="trackListSection" class="jumbotron container">
-		<h2>Playlist</h2>
-	</section>
-
+			<div id="trackPlaylistWrapper">
+				<table id="trackPlaylistTable" class="table">
+					<thead>
+						<tr>
+							<th>Preview</th>
+							<th>Title</th>
+							<th>Artist</th>
+							<th>Duration</th>
+							<th>Upvotes</th>
+							<th>Upvote</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="track in playlist | orderBy : '-upvotes'">
+						<tr class="playlistTrackRow" id="{{track.$id}}" ">
+							<td title="{{track.name}} "><button class="button-fa " ng-click="previewPlaylistTrack(track.id) ">Preview</button></td>
+							<td>{{track.name}}</td>
+							<td>{{track.artist}}</td>
+							<td>{{track.duration}}</td>
+							<td class="upvotesColValue ">{{track.upvotes}}</td>
+							<td><button class="button-fa " ng-click="upvote(track.$id) "><i class="fa fa-chevron-circle-up "></i></button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		
+	</div>
+	
 	<!--Footer-->
-	<footer id="mainFooter" class="jumbotron container">
-		<p id="footer-title">Site Made With
-			<span class="glyphicon glyphicon-heart-empty"></span> In Seattle, WA</p>
-		<p id="footer-title-secondary">By Abhishek Joshi</p>
+	<footer id="mainFooter " class="jumbotron container ">
+		<p id="footer-title ">Site Made With
+			<span class="glyphicon glyphicon-heart-empty "></span> In Seattle, WA</p>
+		<p id="footer-title-secondary ">By Abhishek Joshi</p>
 	</footer>
 
-	
+
 
 </body>
 

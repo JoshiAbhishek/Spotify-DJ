@@ -205,7 +205,15 @@ h3 {
 	border-width: .1em;
 }
 
-.fa-play-circle, .fa-pause, .fa-stop {
+#logoutButton {
+	background-color: transparent;
+	color: rgb(0, 214, 108) !important;
+	border-style: solid;
+	border-color: rgb(0, 214, 108);
+	border-width: .1em;
+}
+
+.fa-play-circle, .fa-pause, .fa-stop, .fa-chevron-circle-up {
 	font-size: 1.5em;
 }
 
@@ -246,4 +254,13 @@ h3 {
 	border-style: solid;
 	border-color: #FFFFFF;
 	border-width: .1em;
+}
+
+#trackPlaylistTable {
+	text-align: left;
+}
+
+.button-fa {
+	background-color: transparent;
+	border: none;
 }
