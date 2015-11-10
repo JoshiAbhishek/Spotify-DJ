@@ -118,23 +118,18 @@ var mainCtrl = myApp.controller('mainCtrl', function ($scope, $http, $firebaseAr
 	
 	//Add Track To Playlist
 	$scope.addTrack = function (id, name, artist, duration, preview_url) {
-		//if ($scope.authData) {
-			$scope.playlist.$add({
-				id: id,
-				name: name,
-				artist: artist,
-				duration: duration,
-				preview_url: preview_url,
-				upvotes: 0
-			})
+		$scope.playlist.$add({
+			id: id,
+			name: name,
+			artist: artist,
+			duration: duration,
+			preview_url: preview_url,
+			upvotes: 0
+		})
 
-				.then(function () {
-					console.log("Added " + name + " by " + artist);
-				})
-		//}
-		//else {
-			//alert("Please sign up or log in");
-		//}
+			.then(function () {
+				console.log("Added " + name + " by " + artist);
+			})
 	}
 
 	$scope.previewPlaylistTrack = function (id) {
@@ -165,34 +160,29 @@ var mainCtrl = myApp.controller('mainCtrl', function ($scope, $http, $firebaseAr
 	
 	//Upvote A Track
 	$scope.upvote = function (id) {
-		//if ($scope.authData) {
-			var tempTrackRef = tracksRef.child(id);
-			var queryRef = tempTrackRef.child('upvotes');
+		var tempTrackRef = tracksRef.child(id);
+		var queryRef = tempTrackRef.child('upvotes');
 
-			if (queryRef != null) {
-				queryRef.transaction(function (upvoteNumber) {
-					return upvoteNumber + 1;
-				},
-					function (error, committed, snapshot) {
-						if (error) {
-							alert("Upvote transaction failed abnormally!");
-						}
-						else if (!committed) {
-							alert("Upvote transaction aborted!");
-						}
-						else {
-							console.log("Upvote transaction committed");
-						}
+		if (queryRef != null) {
+			queryRef.transaction(function (upvoteNumber) {
+				return upvoteNumber + 1;
+			},
+				function (error, committed, snapshot) {
+					if (error) {
+						alert("Upvote transaction failed abnormally!");
 					}
-					);
-			}
-			else {
-				alert("Accessing Upvote Ref Failed!");
-			}
-		//}
-		//else {
-		//	alert("Please sign up or log in");
-		//}
+					else if (!committed) {
+						alert("Upvote transaction aborted!");
+					}
+					else {
+						console.log("Upvote transaction committed");
+					}
+				}
+				);
+		}
+		else {
+			alert("Accessing Upvote Ref Failed!");
+		}
 	}
 
 });

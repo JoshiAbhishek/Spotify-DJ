@@ -152,7 +152,7 @@
 							<th>Preview</th>
 							<th>Title</th>
 							<th>Artist</th>
-							<th>Duration</th>
+							<th>Duration (ms)</th>
 							<th>Add To Playlist</th>
 						</tr>
 					</thead>
@@ -178,7 +178,7 @@
 			<h2>Preview The Playlist</h2>
 
 			<div id="previewPlaylistWrapper">
-				<iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="380" frameborder="0"
+				<iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="300" frameborder="0"
 				allowtransparency="true"></iframe>
 			</div>
 
@@ -195,19 +195,19 @@
 							<th>Preview</th>
 							<th>Title</th>
 							<th>Artist</th>
-							<th>Duration</th>
+							<th>Duration (ms)</th>
 							<th>Upvotes</th>
 							<th>Upvote</th>
 						</tr>
 					</thead>
 					<tbody ng-repeat="track in playlist | orderBy : '-upvotes'">
 						<tr class="playlistTrackRow" id="{{track.$id}}" ">
-							<td title="{{track.name}} "><button class="button-fa " ng-click="previewPlaylistTrack(track.id) ">Preview</button></td>
+							<td title="{{track.name}} "><button class="previewButton" ng-click="previewPlaylistTrack(track.id)">Preview</button></td>
 							<td>{{track.name}}</td>
 							<td>{{track.artist}}</td>
 							<td>{{track.duration}}</td>
-							<td class="upvotesColValue ">{{track.upvotes}}</td>
-							<td><button class="button-fa " ng-click="upvote(track.$id) "><i class="fa fa-chevron-circle-up "></i></button></td>
+							<td class="upvotesColValue">{{track.upvotes}}</td>
+							<td><button class="button-fa" ng-click="upvote(track.$id)"><i class="fa fa-chevron-circle-up"></i></button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -217,13 +217,11 @@
 	</div>
 	
 	<!--Footer-->
-	<footer id="mainFooter " class="jumbotron container ">
-		<p id="footer-title ">Site Made With
-			<span class="glyphicon glyphicon-heart-empty "></span> In Seattle, WA</p>
-		<p id="footer-title-secondary ">By Abhishek Joshi</p>
+	<footer id="mainFooter" class="jumbotron container">
+		<p id="footer-title">Site Made With
+			<span class="glyphicon glyphicon-heart-empty"></span> In Seattle, WA</p>
+		<p id="footer-title-secondary">By Abhishek Joshi</p>
 	</footer>
-
-
 
 </body>
 
