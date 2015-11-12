@@ -131,7 +131,8 @@ var mainCtrl = myApp.controller('mainCtrl', function ($scope, $http, $firebaseAr
 				console.log("Added " + name + " by " + artist);
 			})
 	}
-
+	
+	//Preview Track From Playlist
 	$scope.previewPlaylistTrack = function (id) {
 		var previewURL = 'https://embed.spotify.com/?uri=spotify:track:' + id;
 
