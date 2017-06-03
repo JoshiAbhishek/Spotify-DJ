@@ -4,11 +4,11 @@ This web app provides the capability of a global collaborative playlist, built o
 
 http://students.washington.edu/joshi1/info343/Spotify-DJ/
 
-#Home
+## Home
 ![home](img/home.png)
 
-#Upvote Songs
+## Upvote Songs
 ![playlist](img/playlistlist.png)
 
-#Preview Songs
+## Preview Songs
 ![playlist](img/playlist.png)
